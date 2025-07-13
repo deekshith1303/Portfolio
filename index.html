@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parshi Deekshith | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4712/4712079.png" type="image/png">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Rajdhani', sans-serif;
+      background: radial-gradient(circle at center, #1c1c1c, #0f2027);
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: rgba(118, 165, 173, 0.6);
+      padding: 3rem;
+      text-align: center;
+      animation: fadeInDown 1s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+    .glow {
+      animation: glowEffect 2s ease-in-out infinite alternate;
+    }
+    @keyframes glowEffect {
+      from { box-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6; }
+      to { box-shadow: 0 0 20px #ffcc00, 0 0 30px #00e6e6; }
+    }
+    .typing-text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #00e6e6;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      animation: typing 4s steps(20, end), blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    header p {
+      font-size: 1.3rem;
+      margin-top: 1rem;
+      animation: fadeIn 3s ease;
+    }
+    .social-links {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .social-links a {
+      color: #00e6e6;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+    }
+    .social-links img {
+      height: 20px;
+      margin-right: 6px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: #1c1c1c;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #00e6e6;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+    section {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255,255,255,0.07);
+      border-radius: 14px;
+      animation: slideIn 1s ease-in-out;
+    }
+    @keyframes slideIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #00e6e6;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2::before {
+      content: '🔹';
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    .download-button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #00e6e6;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      animation: fadeIn 2s ease;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.8rem;
+      background: #00e6e6;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #101010;
+    }
+    footer::after {
+      content: "🚀 Let's build the future together!";
+      display: block;
+      margin-top: 1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: #00e6e6;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .projects-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      scroll-snap-type: x mandatory;
+    }
+    .project-card {
+      flex: 0 0 auto;
+      width: 300px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid #00e6e6;
+      border-radius: 12px;
+      padding: 1.5rem;
+      scroll-snap-align: start;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 25px #00e6e6;
+    }
+    .project-icon {
+      font-size: 2rem;
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+    }
+    .project-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #00e6e6;
+      margin-bottom: 0.5rem;
+    }
+
+    .robot-float {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+      width: 60px;
+      animation: floatBot 4s ease-in-out infinite;
+    }
+    @keyframes floatBot {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Experience Card Styles */
+    .experience-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .experience-card {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid #00e6e6;
+      border-left: 8px solid #ffcc00;
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .experience-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #00e6e6;
+    }
+    .exp-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .exp-icon {
+      font-size: 1.8rem;
+      color: #ffcc00;
+    }
+    .exp-header h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #00e6e6;
+      margin: 0.3rem 0;
+      flex-grow: 1;
+      padding-left: 0.5rem;
+    }
+    .badge {
+      background-color: #00e6e6;
+      color: #000;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .mini-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.mini-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #00e6e6;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mini-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00e6e6;
+}
+.about-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+.about-flex img {
+  flex: 1 1 150px;
+  max-width: 180px;
+  border-radius: 50%;
+  border: 3px solid #00e6e6;
+  box-shadow: 0 0 20px #00e6e6;
+}
+.about-text {
+  flex: 2;
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+.highlight {
+  color: #ffcc00;
+  font-weight: bold;
+}
+header {
+  background:  rgb(1, 16, 36);
+  padding: 3rem;
+  text-align: center;
+  animation: fadeInDown 1s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 3px solid #064e22;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.typing-text {
+  background: linear-gradient(to right, #ffe259, #ffa751);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header class="glow">
+  <div class="social-links">
+    <a href="https://github.com/deekshith1303" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/parshi-deekshith-41bab6315" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">LinkedIn
+    </a>
+  </div>
+  <h1><span class="typing-text">Parshi Deekshith</span></h1>
+  <p>Aspiring Software Developer | Python Enthusiast | Futuristic Thinker</p>
+  <a class="download-button" href="file:///C:/Users/deeks/Downloads/Deekshith%20final%20resume.pdf" download>📄 Download Resume</a>
+  <img src="https://cdn-icons-png.flaticon.com/512/4712/4712079.png" class="robot-float" alt="Robot" />
+</header>
+
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+  <h2>About Me</h2>
+  <div class="about-flex">
+    <img src="c:\Users\deeks\Downloads\WhatsApp Image 2025-07-13 at 00.39.45_455e723b.jpg" alt="Avatar">
+    <div class="about-text">
+      <p>Hello! I'm <span class="highlight">Parshi Deekshith</span>, a <span class="highlight">tech enthusiast</span> and aspiring <span class="highlight">Software Developer</span> from India, currently pursuing a B.Tech in <span class="highlight">Cyber Security</span>.</p>
+      <p>From organizing <span class="highlight">Techno Week</span> to building AI and full-stack solutions, I love creating real impact with code. I'm driven by innovation, and I thrive in collaborative environments where <span class="highlight">technology meets creativity</span>.</p>
+      <p>My passion lies in solving real-world problems through clean and efficient digital systems—blending <span class="highlight">security, functionality</span>, and aesthetic design.</p>
+    </div>
+  </div>
+</section>
+
+
+  <section id="skills">
+  <h2>Skills & Technologies</h2>
+  <div class="mini-card-grid">
+    <div class="mini-card">Python</div>
+    <div class="mini-card">SQL</div>
+    <div class="mini-card">Java</div>
+    <div class="mini-card">C</div>
+    <div class="mini-card">JavaScript</div>
+    <div class="mini-card">Flask</div>
+    <div class="mini-card">Flutter</div>
+    <div class="mini-card">React</div>
+    <div class="mini-card">Docker</div>
+    <div class="mini-card">Git</div>
+    <div class="mini-card">AWS</div>
+    <div class="mini-card">Linux</div>
+    <div class="mini-card">Web</div>
+    <div class="mini-card">Windows</div>
+    <div class="mini-card">Team Coordination</div>
+    <div class="mini-card">Event Organization</div>
+    <div class="mini-card">Technical Communication</div>
+    <div class="mini-card">Deadline Management</div>
+    <div class="mini-card">Team Leadership</div>
+  </div>
+</section>
+
+
+  <section id="certifications">
+  <h2>Certifications</h2>
+  <div class="mini-card-grid">
+    <div class="mini-card">Machine Learning with ChatGPT – Coursera</div>
+    <div class="mini-card">Chatbot Dev using AI – NxtWave</div>
+    <div class="mini-card">Python for Data Analysis – Coursera</div>
+    <div class="mini-card">AWS Solution Architecture – Forage</div>
+    <div class="mini-card">Advanced Engineering Development – Forage</div>
+  </div>
+</section>
+
+
+  <section id="experience">
+    <h2>Professional Experience</h2>
+    <div class="experience-container">
+      <div class="experience-card">
+        <div class="exp-header">
+          <span class="exp-icon">💼</span>
+          <h3>Python Developer Intern</h3>
+          <span class="badge">Saiket Systems</span>
+        </div>
+        <p><strong>Duration:</strong> May 2025 – June 2025</p>
+        <p>Worked on backend development, data modeling, and Python automation scripts. Gained real-time project exposure while collaborating with a fast-paced development team to solve operational problems efficiently.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-container">
+      <div class="project-card">
+        <div class="project-icon">💡</div>
+        <h3>IdeaForge</h3>
+        <p>Full-stack web platform connecting entrepreneurs and investors for seamless idea exchange.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🛡️</div>
+        <h3>Weapon Detection</h3>
+        <p>Python-based deep learning model to detect weapons from live camera feeds using OpenCV.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🤖</div>
+        <h3>AI Chatbot Builder</h3>
+        <p>Developed chatbot system using GPT APIs for customer interaction and support workflows.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <h3>Portfolio Tracker</h3>
+        <p>Built a stock tracker with live charts using Python, Pandas, Plotly & SQL backend.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements & Volunteering</h2>
+    <ul>
+      <li>Hosted department’s Techno Week Event at college</li>
+      <li>Main organizer & member at GDSC GNI</li>
+      <li>Certified chatbot creator during NxtWave AI challenge</li>
+      <li>Volunteer Developer – GDSC GNI, helped design logic-based pseudo code challenges</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p><strong>Email:</strong> <a href="mailto:deekshithparshi13@gmail.com" style="color:#00e6e6">deekshithparshi13@gmail.com</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+919392839816" style="color:#00e6e6">+91 93928 39816</a></p>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>My journey into software engineering has just begun. Ready to code my way to success</p>
+  </footer>
+</body>
+</html>
